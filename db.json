@@ -1,0 +1,20 @@
+{
+  "lista_itens": [
+    {
+      "valorItem": "the last of us",
+      "data": {
+        "dia": 29,
+        "mes": 7
+      },
+      "id": 1
+    },
+    {
+      "valorItem": "harry potter e a pedra filosofal",
+      "data": {
+        "dia": 29,
+        "mes": 7
+      },
+      "id": 2
+    }
+  ]
+}

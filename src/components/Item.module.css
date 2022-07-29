@@ -1,0 +1,94 @@
+.ListaContainer {
+  margin: 0 auto;
+  display: flex;
+  font-family: 'Inter', sans-serif;
+}
+
+.data {
+  max-width: 90px;
+  height: fit-content;
+  display: block;
+  font-size: 12px;
+  padding: 8px 7px;
+  background-color: #162625;
+}
+
+.checar {
+  display: block;
+  width: 32px;
+  height: 30px;
+  border: none;
+  margin: 0 6px;
+  background-color: #162625;
+}
+
+.conteudo {
+  max-width: 470px;
+  font-size: 14px;
+  padding: 8px;
+  background-color: #162625;
+}
+
+.mostrarBtns {
+  width: 27px;
+  height: 30px;
+  padding: 6px 0;
+  border: none;
+  background-color: #2E5955;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.mostrarBtns:hover {
+  cursor: pointer;
+}
+
+
+.mostrarBtns span {
+  display: block;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background-color: #D9D9D9;
+}
+
+.btns {
+  max-width: 0;
+  overflow-x: hidden;
+  transition: 0.3s;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 30px;
+}
+
+.btns.abrir {
+  max-width: 185px;
+  transition: 0.3s;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 30px;
+}
+
+.btns button{
+  padding: 0 10px;
+  color: #fff;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Inter', sans-serif;
+}
+
+.btns button:hover {
+  cursor: pointer;
+}
+
+.editar {
+  background-color: #7BA6A1;
+}
+
+.excluir {
+  background-color: #E2313C;
+}

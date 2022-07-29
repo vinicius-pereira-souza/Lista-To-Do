@@ -1,0 +1,29 @@
+.formContainer {
+  max-width: 600px;
+  margin: 50px auto 60px auto;
+  display: grid;
+  grid-template-columns: 1fr 110px;
+  align-items: center;
+  gap: 15px;
+}
+
+.formContainer input {
+  height: 40px;
+  padding: 0 8px;
+  color: #B0D9CD;
+  border: none;
+  background-color: #2E5955;
+  font-family: 'Inter', sans-serif;
+}
+
+.formContainer input::placeholder {
+  color: #B0D9CD;
+}
+
+.formContainer button {
+  height: 40px;
+  border: none;
+  color: #B0D9CD;
+  background-color: #2E5955;
+  font-family: 'Inter', sans-serif;
+}
