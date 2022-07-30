@@ -1,29 +1,28 @@
-import styles from './Form.module.css'
-import { useState } from 'react'
+import style from './Form.module.css'
+import { useState } from 'react';
 
-function Form({handleSubmit}) {
+function Form ({handleSubmit}) {
   const [ item, setItem ] = useState({})
 
-  function itemASerAdicionado(e) {
+  function conteudo(e) {
     setItem({...item, [e.target.name]: e.target.value})
-  }
+  } 
 
-  function subimt(e) {
+  function submitForm(e) {
     e.preventDefault()
-    handleSubmit(item) 
+    handleSubmit(item)
   }
 
-  return (
-    <form className={styles.formContainer} onSubmit={subimt}>
+  return(
+    <form className={style.formContainer}>
       <input 
         type="text" 
-        name="valorItem" 
-        id="valorItem" 
-        value={item.name}
-        placeholder="Descrição"
-        onChange={itemASerAdicionado}
-        />
-      <button type="submit">Adicionar</button>
+        name="conteudo" 
+        id="conteudo"
+        placeholder='Descrição'
+        onChange={conteudo}
+        value={item.name}/>
+      <button type="submit" onClick={submitForm}>Adicionar</button>
     </form>
   )
 }

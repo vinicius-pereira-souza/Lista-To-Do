@@ -1,29 +1,28 @@
 .formContainer {
-  max-width: 600px;
-  margin: 50px auto 60px auto;
+  max-width: 500px;
+  margin: 0 auto;
+  font-family: 'Inter', sans-serif;
   display: grid;
   grid-template-columns: 1fr 110px;
-  align-items: center;
+  grid-template-rows: 30px;
   gap: 15px;
 }
 
-.formContainer input {
-  height: 40px;
-  padding: 0 8px;
-  color: #B0D9CD;
+.formContainer input, button {
   border: none;
+  font-size: 12px;
+  padding: 0 10px;
+  color: #B0D9CD;
   background-color: #2E5955;
-  font-family: 'Inter', sans-serif;
+  transition: 0.3s;
 }
 
 .formContainer input::placeholder {
   color: #B0D9CD;
 }
 
-.formContainer button {
-  height: 40px;
-  border: none;
-  color: #B0D9CD;
-  background-color: #2E5955;
-  font-family: 'Inter', sans-serif;
+.formContainer button:hover {
+  cursor: pointer;
+  transition: 0.3s;
+  background-color: #34746d;
 }

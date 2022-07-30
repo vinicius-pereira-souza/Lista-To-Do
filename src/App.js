@@ -1,31 +1,31 @@
-import styles from './App.module.css'
-import Form from './components/Form';
-import Logo from './components/Logo';
+import './App.css'
 import { useEffect, useState } from 'react';
-// import Lista from './components/Lista';
+
+import Form from './components/Form';
+import logo from './imgs/To-Do List.svg'
 import Item from './components/Item';
 
 function App() {
-  const [objDatas, setObjDatas] = useState([])
+  const [ item, setItem ] = useState()
+
   useEffect(() => {
     fetch('http://localhost:5000/lista_itens', {
       method: 'GET', 
       headers: {
         'Content-Type': 'application/json'
       }
-    }).then(resp => resp.json())
-    .then(resposta => {
-      setObjDatas(resposta)
+    }).then(r => r.json())
+    .then(resp => {
+      setItem(resp)
     }).catch(err => console.log(err))
-  }, [])
+  }, [item])
 
-  function enviarItem(item) {
-    const hj =  new Date()
-
-    item.data = {
+  function adicionarPost(it) {
+    const hj = new Date()
+    it.dataDaPostagem = {
       dia: hj.getDate(),
       mes: hj.getMonth() + 1, 
-      ano: hj.getFullYear
+      ano: hj.getFullYear()
     }
 
     fetch('http://localhost:5000/lista_itens', {
@@ -33,18 +33,24 @@ function App() {
       headers: {
         'Content-Type': 'application/json'
       }, 
-      body: JSON.stringify(item)
-    }).then(resp => resp.json())
-    .then(retorno => {
-      setObjDatas(retorno)
+      body: JSON.stringify(it)
+    }).then(r => r.json())
+    .then(resp => {
     }).catch(err => console.log(err))
   }
 
   return (
-    <main className={styles}>
-      <Logo/>
-      <Form handleSubmit={enviarItem}/>
-    </main>
+    <div>
+      <img className='logo' src={logo} alt="imagem do logo" />
+      <main className='container'>
+        <Form handleSubmit={adicionarPost}/>
+        {item && (
+          item.map(obj => (
+            <Item key={obj.id} dados={obj}/>
+          ))
+        )}
+      </main>
+    </div>
   );
 }
 

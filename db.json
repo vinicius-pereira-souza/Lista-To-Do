@@ -1,20 +1,31 @@
 {
   "lista_itens": [
     {
-      "valorItem": "the last of us",
-      "data": {
-        "dia": 29,
-        "mes": 7
+      "conteudo": "teste",
+      "dataDaPostagem": {
+        "dia": 30,
+        "mes": 7,
+        "ano": 2022
       },
       "id": 1
     },
     {
-      "valorItem": "harry potter e a pedra filosofal",
-      "data": {
-        "dia": 29,
-        "mes": 7
+      "conteudo": "Jogar The Last of Us",
+      "dataDaPostagem": {
+        "dia": 30,
+        "mes": 7,
+        "ano": 2022
       },
       "id": 2
+    },
+    {
+      "conteudo": "",
+      "dataDaPostagem": {
+        "dia": 30,
+        "mes": 7,
+        "ano": 2022
+      },
+      "id": 3
     }
   ]
 }
