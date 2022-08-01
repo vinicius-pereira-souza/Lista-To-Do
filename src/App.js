@@ -1,29 +1,18 @@
 import './App.css'
-import { useEffect, useState } from 'react';
-
-import Form from './components/Form';
-import logo from './imgs/To-Do List.svg'
-import Item from './components/Item';
+import Form from './components/Form/Form';
+import Logo from './components/Logo/Logo';
+import { useState, useEffect } from 'react';
+import Mensagem from './components/Mesagem/Mensagem';
+import Container from './components/ContainerExterno/Container';
+import Filtro from './components/Filtro/Filtro';
 
 function App() {
-  const [ item, setItem ] = useState()
+  const [ arrItem, setArrItem ] = useState([])
 
-  useEffect(() => {
-    fetch('http://localhost:5000/lista_itens', {
-      method: 'GET', 
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).then(r => r.json())
-    .then(resp => {
-      setItem(resp)
-    }).catch(err => console.log(err))
-  }, [item])
-
-  function adicionarPost(it) {
+  function adicionarPost(item) {
     const hj = new Date()
-    it.dataDaPostagem = {
-      dia: hj.getDate(),
+    item.data = {
+      dia: hj.getDate(), 
       mes: hj.getMonth() + 1, 
       ano: hj.getFullYear()
     }
@@ -33,23 +22,39 @@ function App() {
       headers: {
         'Content-Type': 'application/json'
       }, 
-      body: JSON.stringify(it)
+      body: JSON.stringify(item)
     }).then(r => r.json())
     .then(resp => {
+      console.log(resp)
     }).catch(err => console.log(err))
+  }
+
+  useEffect(() => {
+    fetch('http://localhost:5000/lista_itens', {
+      method: 'GET', 
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(r => r.json())
+    .then(arr => {
+      setArrItem(arr)
+      console.log(arr)
+    }).catch(err => console.log(err))
+  }, [])
+
+  function filtroOpcoes(btn) {
+    console.log(btn)
   }
 
   return (
     <div>
-      <img className='logo' src={logo} alt="imagem do logo" />
-      <main className='container'>
-        <Form handleSubmit={adicionarPost}/>
-        {item && (
-          item.map(obj => (
-            <Item key={obj.id} dados={obj}/>
-          ))
-        )}
-      </main>
+      <Logo/>
+      <Form handlePost={adicionarPost}/>
+      <Container>
+        <p>Aqui vai ficar os items adionados a lista</p>
+        <Filtro filtrar={filtroOpcoes}/>
+      </Container>
     </div>
   );
 }

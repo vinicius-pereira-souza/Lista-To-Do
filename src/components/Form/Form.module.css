@@ -1,0 +1,37 @@
+.formConainer {
+  max-width: 500px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: 30px auto;
+  grid-template-areas: 
+  'input botao'
+  'erro erro';
+  align-items: center;
+  column-gap: 15px;
+}
+
+.formConainer input {
+  grid-area: input;
+  height: 30px;
+  padding: 0 10px;
+  border: none;
+  color: #B0D9CD;
+  background-color: #2E5955;
+}
+
+.formConainer input::placeholder {
+  color: #B0D9CD;
+}
+
+.formConainer label {
+  grid-area: erro;
+  font-size: 14px;
+  margin-top: 5px;
+  color: #E2313C;
+  display: none;
+}
+
+.formConainer label.erro {
+  display: block;
+}

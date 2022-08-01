@@ -1,0 +1,29 @@
+.btn {
+  padding: 5px 8px;
+  height: 30px;
+  border: none;
+  transition: 0.3s;
+  color: #B0D9CD;
+  background-color: #2E5955;
+}
+
+.btn:hover {
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn.colorWhite {
+  color: #fff;
+}
+
+.btn.colorGray {
+  color: #B0D9CD;
+}
+
+.btnExluir {
+  background-color: #E2313C;
+}
+
+.btnEditar {
+  background-color: #7BA6A1;
+}
