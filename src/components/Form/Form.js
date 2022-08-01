@@ -31,7 +31,7 @@ function Form({handlePost}) {
       <input type="text" 
         name="descricao"
         id="descricao"
-        placeholder="Descricao"
+        placeholder="Descrição"
         value={item.descricao || ''}
         onChange={handleChange}/>
         {erro && (

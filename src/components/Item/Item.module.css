@@ -1,0 +1,75 @@
+.contianer {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+}
+
+span {
+  display: block;
+}
+
+.data {
+  font-size: 15px;
+  flex: 0 0 113px;
+  text-align: center;
+  padding: 9px;
+  background-color: #162625;
+}
+
+.check {
+  flex: 0 0 40px;
+  height: 37px;
+  margin: 0 5px;
+  border: none;
+  background-color: #162625;
+}
+
+.conteudo {
+  font-size: 15px;
+  padding: 9px;
+  background-color: #162625;
+}
+
+.btn {
+  flex: 0 0 30px;
+  height: 40px;
+  border: none;
+  background-color: #2E5955;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.btn:hover {
+  cursor: pointer;
+}
+
+.btns {
+  flex: 0 0 0;
+  overflow-x: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 40px;
+  transition: 0.3s;
+  scale: 0;
+}
+
+.btns.mostrar {
+  flex: 0 0 175px;
+  transition: 0.3s;
+  scale: 1;
+}
+
+.btns button {
+  border: none;
+  color: #fff;
+  background-color: #7BA6A1;
+}
+
+.btns button + button {
+  border: none;
+  color: #fff;
+  background-color: #E2313C;
+}

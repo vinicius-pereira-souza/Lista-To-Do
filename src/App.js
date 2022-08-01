@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import Mensagem from './components/Mesagem/Mensagem';
 import Container from './components/ContainerExterno/Container';
 import Filtro from './components/Filtro/Filtro';
+import Item from './components/Item/Item';
 
 function App() {
   const [ arrItem, setArrItem ] = useState([])
@@ -52,8 +53,8 @@ function App() {
       <Logo/>
       <Form handlePost={adicionarPost}/>
       <Container>
-        <p>Aqui vai ficar os items adionados a lista</p>
         <Filtro filtrar={filtroOpcoes}/>
+        <Item/>
       </Container>
     </div>
   );
