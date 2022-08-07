@@ -7,9 +7,14 @@ import { useState } from 'react';
 
 function Item() {
   const [ mostrarBtns, setMostrarbtns ] = useState(false)
+  const [ confirmar, setConfirmar ] = useState(false)
 
   function handleMostrarBtns() {
     setMostrarbtns(!mostrarBtns)
+  }
+
+  function handleConfirmar() {
+    setConfirmar(!confirmar)
   }
 
   return(
@@ -21,12 +26,12 @@ function Item() {
           <span> 2022</span>
         </span>
       </div>
-      <button className={style.check}>
-        <img src={iconCheck} alt="" />
+      <button className={style.check} onClick={handleConfirmar}>
+        {confirmar && <img src={iconCheck} alt="" />}
       </button>
       <div className={style.conteudo}>
         <p>
-         Mrs. Dursley, of number four, Privet Drive, were proud to say that they were perfectly normal, thank 
+         Mrs. Dursley, 
         </p>
       </div>
       <button className={style.mostrarBtns} onClick={handleMostrarBtns}>

@@ -37,7 +37,7 @@
 }
 
 .conteudo {
-  flex: 1 0 440px;
+  flex: 0 0 440px;
   padding: 10px;
   background-color: #162625;
 }
