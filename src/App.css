@@ -6,17 +6,8 @@
 }
 
 body {
+  font-size: 16px;
+  height: 100vh;
   color: #B0D9CD;
   background-color: #111B1C;
-}
-
-.logo {
-  margin: 40px auto 50px auto;
-  max-width: auto;
-  display: block;
-}
-
-.container {
-  max-width: 785px;
-  margin: 0 auto;
 }

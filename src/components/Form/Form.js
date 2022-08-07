@@ -1,45 +1,42 @@
-import Botao from '../Botao/Botao'
 import style from './Form.module.css'
 import { useState } from 'react';
+import Botao from './../Botao/Botao';
 
-function Form({handlePost}) {
+function Form() {
   const [ item, setItem ] = useState({})
-  const [ erro, setErro ] = useState(false)
-  
+  const [ erroMsg, setErroMsg ] = useState(false)
+
   function handleChange(e) {
     setItem({...item, [e.target.name]: e.target.value})
-    console.log(item.descricao)
   }
 
   function handleSubmit(e) {
     e.preventDefault()
-    
-    if(item.descricao) {
-      item.completo = false
-      handlePost(item)
-      setItem({})
-      setErro(false)
-    }
 
-    if(!item.descricao) {
-      setErro(!erro)
+    if(item.descricao) {
+      console.log(item.descricao)
+      item.descricao = ''
+      setErroMsg(false)
+    } else {
+      setErroMsg(true)
     }
   }
 
   return (
-    <form className={style.formConainer}>
+    <form className={style.formContainer}>
       <input type="text" 
-        name="descricao"
+        name="descricao" 
         id="descricao"
         placeholder="Descrição"
-        value={item.descricao || ''}
-        onChange={handleChange}/>
-        {erro && (
-          <label className={style.erro}>Não é possivel adicionar com o campo vazio</label>
-        )}
-      <Botao acao={handleSubmit} texto="Adicionar"/>
+        value={item.descricao}
+        onChange={handleChange}
+        className={erroMsg && style.erro}
+      />
+      {erroMsg && <label>O campo não pode estar vazio</label>}
+      <Botao texto="Adicionar" acao={handleSubmit} customClass="adicionar"/>
     </form>
   )
+
 }
 
 export default Form

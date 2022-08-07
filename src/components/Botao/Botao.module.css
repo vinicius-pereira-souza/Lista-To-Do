@@ -1,29 +1,38 @@
 .btn {
-  padding: 5px 8px;
-  height: 30px;
+  display: block;
+  height: 100%;
+  padding: 10px;
   border: none;
-  transition: 0.3s;
-  color: #B0D9CD;
-  background-color: #2E5955;
+  font-family: 'Inter', sans-serif;
 }
 
 .btn:hover {
   cursor: pointer;
-  transition: 0.3s;
 }
 
-.btn.colorWhite {
-  color: #fff;
-}
-
-.btn.colorGray {
+.btn.adicionar {
+  padding: 10px 15px;
   color: #B0D9CD;
+  background-color: #2E5955;
 }
 
-.btnExluir {
+.btn.excluir {
+  color: #fff;
   background-color: #E2313C;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
-.btnEditar {
+.btn.editar {
+  color: #fff;
   background-color: #7BA6A1;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.btn.filtro {
+  color: #fff;
+  background-color: #2E5955;
 }

@@ -1,28 +1,34 @@
 .container {
-  max-width: 350px;
-  position: absolute;
-  top: 0;
-  right: 0;
   display: flex;
   align-items: center;
+  gap: 10px;
 }
 
-.container span {
+.btnFiltro {
   color: #fff;
-  user-select: none;
-  padding: 5px 0 5px 10px;
+  border: none;
+  background-color: transparent;
+  padding: 10px;
 }
 
-.container span:hover {
+.btnFiltro:hover {
   cursor: pointer;
 }
 
-.btns {
-  display: none;
+.containerFitros {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  overflow-x: hidden;
 }
 
-.btns.mostrar {
-  display: grid;
-  grid-template-columns: auto auto auto;
-  gap: 2px;
+.containerFitros.aberto {
+  max-width: 255px;
+  transition: 0.3s;
+  overflow-x: hidden;
+}
+
+.containerFitros.fechado {
+  max-width: 0;
+  transition: 0.3s;
 }

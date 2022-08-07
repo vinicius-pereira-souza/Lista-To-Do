@@ -1,37 +1,41 @@
-.formConainer {
+.formContainer {
   max-width: 500px;
-  margin: 0 auto;
+  margin: 0 auto 70px auto;
   display: grid;
   grid-template-columns: 1fr auto;
-  grid-template-rows: 30px auto;
-  grid-template-areas: 
-  'input botao'
-  'erro erro';
-  align-items: center;
+  grid-template-rows: auto auto;
   column-gap: 15px;
+  grid-template-areas: 
+  'input btn'
+  'err err';
+  align-items: center;
 }
 
-.formConainer input {
+.formContainer input {
   grid-area: input;
-  height: 30px;
-  padding: 0 10px;
+  padding: 10px;
   border: none;
   color: #B0D9CD;
   background-color: #2E5955;
 }
 
-.formConainer input::placeholder {
+.formContainer input::placeholder {
   color: #B0D9CD;
+  font-family: 'Inter', sans-serif;
 }
 
-.formConainer label {
-  grid-area: erro;
+.formContainer input.erro {
+  border-bottom: 2px solid #E2313C;
+}
+
+.btnAdicionar {
+  grid-area: btn;
+  padding: 5px 8px;
+}
+
+.formContainer label {
+  grid-area: err; 
   font-size: 14px;
   margin-top: 5px;
   color: #E2313C;
-  display: none;
-}
-
-.formConainer label.erro {
-  display: block;
 }

@@ -1,10 +1,10 @@
 import style from './Logo.module.css'
-import img from '../../imgs/To-Do List.svg'
+import logo from '../../imgs/To-Do List.svg'
 
 function Logo() {
-  return (
+  return(
     <div className={style.logo}>
-      <img src={img} alt="imagem do logo" />
+      <img src={logo} alt="imagem do logo" />
     </div>
   )
 }

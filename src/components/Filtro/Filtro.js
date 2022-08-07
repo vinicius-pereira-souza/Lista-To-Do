@@ -1,28 +1,26 @@
 import style from './Filtro.module.css'
+import Botao from './../Botao/Botao';
 import { useState } from 'react';
 
-function Filtro({filtrar}) {
-  const [ aparecer, setAparecer ] = useState(false)
+function Filtro() {
+  const [ aberto, setAberto ] = useState(false)
 
-  function ativarFiltro(e) {
-    filtrar(e)
-  }
-
-  function mostrarFiltros() {
-    setAparecer(!aparecer)
+  function handleAbrirBtnsFiltro() {
+    setAberto(!aberto)
   }
 
   return (
     <div className={style.container}>
-      {aparecer && (
-        <div className={`${style.btns} ${style.mostrar}`}>
-          <button onClick={ativarFiltro} id="all">Todos</button>
-          <button onClick={ativarFiltro} id="complete">Completos</button>
-          <button onClick={ativarFiltro} id="incomplete">Incompletos</button>
-        </div>
-      )}
-
-      <span onClick={mostrarFiltros}>Filtro</span>
+      <div className={`${style.containerFitros} ${aberto ? style.aberto : style.fechado}`}>
+        <Botao texto="Todos" customClass="filtro"/>
+        <Botao texto="Completos" customClass="filtro"/>
+        <Botao texto="Incompletos" customClass="filtro"/>
+      </div>
+      <button 
+        onClick={handleAbrirBtnsFiltro} 
+        className={style.btnFiltro}>
+          Filtrar
+      </button>
     </div>
   )
 }
