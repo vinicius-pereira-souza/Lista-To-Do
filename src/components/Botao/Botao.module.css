@@ -18,6 +18,7 @@
 
 .btn.excluir {
   color: #fff;
+  height: fit-content;
   background-color: #E2313C;
   display: flex;
   align-items: center;
@@ -26,6 +27,7 @@
 
 .btn.editar {
   color: #fff;
+  height: fit-content;
   background-color: #7BA6A1;
   display: flex;
   align-items: center;
@@ -35,4 +37,12 @@
 .btn.filtro {
   color: #fff;
   background-color: #2E5955;
+}
+
+.btn.modificar {
+  background-color: #2E5955;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
 }

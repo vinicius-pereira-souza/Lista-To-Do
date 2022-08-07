@@ -1,0 +1,15 @@
+.container {
+  margin: 0 auto;
+}
+
+.containerMin {
+  max-width: 468px;
+  height: 40px;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+
+.containerMax {
+  max-width: 790px;
+}
