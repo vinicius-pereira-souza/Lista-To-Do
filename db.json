@@ -1,13 +1,13 @@
 {
   "lista_itens": [
     {
-      "descricao": "teste1",
-      "completo": false,
+      "descricao": "teste 1",
       "data": {
-        "dia": 1,
+        "dia": 8,
         "mes": 8,
         "ano": 2022
       },
+      "completo": false,
       "id": 1
     }
   ]
