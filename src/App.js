@@ -3,8 +3,24 @@ import Container from './components/Container/Container';
 import Form from './components/Form/Form';
 import Logo from './components/Logo/Logo';
 import Filtro from './components/Filtro/Filtro';
+import Item from './components/Item/Item';
+import { useEffect, useState } from 'react';
 
 function App() {
+
+  const [ arrItem, setArrItem ] = useState([])
+
+  useEffect(() => {
+    fetch('http://localhost:5000/lista_itens', {
+      method: 'GET', 
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(resp => resp.json())
+    .then(itemArr => {
+      setArrItem(itemArr)
+    }).catch(err => console.log(err))
+  }, [arrItem])
 
   function adicionarItem(novoItem) {
     const dataAdicionado = new Date()
@@ -31,6 +47,11 @@ function App() {
       <Form handleAdicionar={adicionarItem}/>
       <Container customClass="flexEnd">
         <Filtro/>
+      </Container>
+      <Container>
+        {arrItem && arrItem.map((obj) => (
+          <Item key={obj.id} dados={obj}/> 
+        ))}
       </Container>
     </div>
   );

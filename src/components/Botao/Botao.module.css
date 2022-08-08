@@ -17,8 +17,10 @@
 }
 
 .btn.excluir {
+  flex: 0 0 auto;
+  padding: 8px 10px;
   color: #fff;
-  height: fit-content;
+  height: 40px;
   background-color: #E2313C;
   display: flex;
   align-items: center;
@@ -26,8 +28,10 @@
 }
 
 .btn.editar {
+  flex: 0 0 auto;
+  padding: 8px 10px;
   color: #fff;
-  height: fit-content;
+  height: 40px;
   background-color: #7BA6A1;
   display: flex;
   align-items: center;

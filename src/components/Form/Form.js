@@ -15,8 +15,8 @@ function Form({handleAdicionar}) {
 
     if(item.descricao) {
       handleAdicionar(item)
-      item.descricao = ''
       setErroMsg(false)
+      item.descricao = ''
     } else {
       setErroMsg(true)
     }
