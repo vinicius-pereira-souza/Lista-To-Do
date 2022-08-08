@@ -3,6 +3,7 @@ import Botao from '../Botao/Botao'
 import iconExcluir from '../../imgs/icon-delete.svg'
 import iconEditar from '../../imgs/icon-edit.svg'
 import iconCheck from '../../imgs/icon-complete.svg'
+import iconInCheck from '../../imgs/icone-desmarcado.svg'
 import { useState } from 'react';
 
 function Item() {
@@ -27,7 +28,7 @@ function Item() {
         </span>
       </div>
       <button className={style.check} onClick={handleConfirmar}>
-        {confirmar && <img src={iconCheck} alt="" />}
+        {confirmar ? <img src={iconCheck} alt="" /> : <img src={iconInCheck} alt="" />}
       </button>
       <div className={style.conteudo}>
         <p>

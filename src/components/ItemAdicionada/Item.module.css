@@ -7,7 +7,7 @@
 .data {
   max-width: min-content;
   height: fit-content;
-  padding: 10px;
+  padding: 11px;
   background-color: #162625;
 }
 
@@ -19,7 +19,7 @@
 
 .check {
   width: 40px;
-  height: 40px;
+  height: 42px;
   border: none;
   padding: 10px;
   background-color: #162625;
@@ -37,7 +37,7 @@
 }
 
 .conteudo {
-  flex: 0 0 440px;
+  flex: 1 0 auto;
   padding: 10px;
   background-color: #162625;
 }
