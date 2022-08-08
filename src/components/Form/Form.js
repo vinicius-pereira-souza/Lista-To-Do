@@ -2,7 +2,7 @@ import style from './Form.module.css'
 import { useState } from 'react';
 import Botao from './../Botao/Botao';
 
-function Form() {
+function Form({handleAdicionar}) {
   const [ item, setItem ] = useState({})
   const [ erroMsg, setErroMsg ] = useState(false)
 
@@ -14,7 +14,7 @@ function Form() {
     e.preventDefault()
 
     if(item.descricao) {
-      console.log(item.descricao)
+      handleAdicionar(item)
       item.descricao = ''
       setErroMsg(false)
     } else {
@@ -28,9 +28,9 @@ function Form() {
         name="descricao" 
         id="descricao"
         placeholder="Descrição"
-        value={item.descricao}
+        value={item.descricao ? item.descricao : '' }
         onChange={handleChange}
-        className={erroMsg && style.erro}
+        className={erroMsg ? style.erro : undefined}
       />
       {erroMsg && <label>O campo não pode estar vazio</label>}
       <Botao texto="Adicionar" acao={handleSubmit} customClass="adicionar"/>

@@ -1,15 +1,13 @@
 .container {
-  margin: 0 auto;
-}
-
-.containerMin {
+  margin: 0 auto 20px auto;
   max-width: 800px;
-  height: 40px;
   position: relative;
   margin-bottom: 20px;
 }
 
 
-.containerMax {
-  max-width: 790px;
+.flexEnd {
+  display: flex;
+  align-items: center;
+  justify-content: end;
 }
