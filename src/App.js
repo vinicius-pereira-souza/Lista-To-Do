@@ -7,8 +7,7 @@ import Item from './components/Item/Item';
 import { useEffect, useState } from 'react';
 
 function App() {
-
-  const [ arrItem, setArrItem ] = useState([])
+  const [ arrItens, setArrItens ] = useState(false)
 
   useEffect(() => {
     fetch('http://localhost:5000/lista_itens', {
@@ -17,10 +16,10 @@ function App() {
         'Content-Type': 'application/json'
       }
     }).then(resp => resp.json())
-    .then(itemArr => {
-      setArrItem(itemArr)
+    .then(itens => {
+      setArrItens(itens)
     }).catch(err => console.log(err))
-  }, [arrItem])
+  }, [])
 
   function adicionarItem(novoItem) {
     const dataAdicionado = new Date()
@@ -30,28 +29,44 @@ function App() {
       mes: dataAdicionado.getMonth() + 1, 
       ano: dataAdicionado.getFullYear()
     }
-    novoItem.completo = false
 
     fetch('http://localhost:5000/lista_itens', {
       method: 'POST', 
       headers: {
         'Content-Type': 'application/json'
       }, 
-      body: JSON.stringify(novoItem)
+      body: JSON.stringify({
+        ...novoItem, completo: false
+      })
+    }).catch(err => console.log(err))
+  }
+
+  function handleDelete(item) {
+    fetch(`http://localhost:5000/lista_itens/${item.id}`, {
+      method: 'DELETE', 
+      headers: {
+        'Content-Type': 'application/json'
+      }
     })
+    .then(r => r.json())
+    .then(items => {
+      console.log(items)
+    }).catch(err => console.log(err))
   }
 
   return (
     <div>
       <Logo />
-      <Form handleAdicionar={adicionarItem}/>
+      <Form handleAdicionar={adicionarItem} textoBtn="Adicionar"/>
       <Container customClass="flexEnd">
         <Filtro/>
       </Container>
       <Container>
-        {arrItem && arrItem.map((obj) => (
-          <Item key={obj.id} dados={obj}/> 
-        ))}
+        {arrItens.length > 0 && (
+          arrItens.map((objDados) => (
+            <Item key={objDados.id} dados={objDados} deletarItem={handleDelete}/>
+          ))
+        )}
       </Container>
     </div>
   );

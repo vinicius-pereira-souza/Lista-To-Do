@@ -2,8 +2,8 @@ import style from './Form.module.css'
 import { useState } from 'react';
 import Botao from './../Botao/Botao';
 
-function Form({handleAdicionar}) {
-  const [ item, setItem ] = useState({})
+function Form({handleAdicionar, textoBtn, handleValue}) {
+  const [ item, setItem ] = useState(handleValue || {})
   const [ erroMsg, setErroMsg ] = useState(false)
 
   function handleChange(e) {
@@ -33,7 +33,7 @@ function Form({handleAdicionar}) {
         className={erroMsg ? style.erro : undefined}
       />
       {erroMsg && <label>O campo não pode estar vazio</label>}
-      <Botao texto="Adicionar" acao={handleSubmit} customClass="adicionar"/>
+      <Botao texto={textoBtn} acao={handleSubmit} customClass="adicionar"/>
     </form>
   )
 
