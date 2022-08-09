@@ -6,11 +6,12 @@ import lixeira from '../../imgs/icon-delete.svg'
 import lapis from '../../imgs/icon-edit.svg'
 import iconeCompleto from '../../imgs/icon-complete.svg'
 import iconeIncompleto from '../../imgs/icone-desmarcado.svg'
+import Deletar from './../Excluir/Deletar';
 
 function Item({dados}) {
   const [ mostrarBts, setMostrarBtns ] = useState(true)
   const [ completo, setCompleto ] = useState(false)
-  const teste = true
+  const [ msgDeletar, setMsgDeletar ] = useState(false)
 
   function handleMostrarBtns() {
     setMostrarBtns(!mostrarBts)
@@ -20,6 +21,14 @@ function Item({dados}) {
     setCompleto(!completo)
   }
 
+  function handleMsgDeletar() {
+    setMsgDeletar(!msgDeletar)
+  }
+
+  function cancelar() {
+    setMsgDeletar(false)
+  }
+
   function deletarItem() {
     fetch(`http://localhost:5000/lista_itens/${dados.id}`, {
       method: 'DELETE', 
@@ -27,15 +36,16 @@ function Item({dados}) {
         'Content-Type': 'application/json'
       }
     }).then(resp => resp.json())
-    .then(item => console.log(item))
+    .then(() => setMsgDeletar(false))
     .catch(err => console.log(err))
   }
 
 
   return(
     <>
-      {teste && (
+      {dados && (
         <div className={style.container}>
+          {msgDeletar && <Deletar cancelar={cancelar} deletar={deletarItem}/>}
           <div className={style.data}>
             <p>
               <span>{dados.data.dia}</span> / <span>{dados.data.mes}</span> / <span>{dados.data.ano}</span>
@@ -54,7 +64,7 @@ function Item({dados}) {
           </button>
           <div className={`${mostrarBts && style.fechar} ${style.containerBtns}`}>
             <Botao texto="Editar" customClass="editar" icone={lapis} />
-            <Botao texto="Excluir" customClass="excluir" icone={lixeira} acao={deletarItem}/>
+            <Botao texto="Excluir" customClass="excluir" icone={lixeira} acao={handleMsgDeletar}/>
           </div>
         </div>
       )}

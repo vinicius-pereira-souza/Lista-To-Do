@@ -5,6 +5,7 @@ import Logo from './components/Logo/Logo';
 import Filtro from './components/Filtro/Filtro';
 import Item from './components/Item/Item';
 import { useEffect, useState } from 'react';
+import Deletar from './components/Excluir/Deletar';
 
 function App() {
 
@@ -44,7 +45,7 @@ function App() {
   return (
     <div>
       <Logo />
-      <Form handleAdicionar={adicionarItem}/>
+      <Form handleAdicionar={adicionarItem} textoBtn="Adicionar"/>
       <Container customClass="flexEnd">
         <Filtro/>
       </Container>
