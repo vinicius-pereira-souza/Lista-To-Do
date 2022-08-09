@@ -1,5 +1,5 @@
 import style from './Item.module.css'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Botao from '../Botao/Botao';
 
 import lixeira from '../../imgs/icon-delete.svg'
@@ -7,11 +7,13 @@ import lapis from '../../imgs/icon-edit.svg'
 import iconeCompleto from '../../imgs/icon-complete.svg'
 import iconeIncompleto from '../../imgs/icone-desmarcado.svg'
 import Deletar from './../Excluir/Deletar';
+import FormEditar from '../FormEditar/FormEditar';
 
-function Item({dados}) {
+function Item({dados, editarDados, deletarItem}) {
+
   const [ mostrarBts, setMostrarBtns ] = useState(true)
   const [ completo, setCompleto ] = useState(false)
-  const [ msgDeletar, setMsgDeletar ] = useState(false)
+  const [ toggleDelete, setToggleDelete ] = useState(false)
 
   function handleMostrarBtns() {
     setMostrarBtns(!mostrarBts)
@@ -21,31 +23,25 @@ function Item({dados}) {
     setCompleto(!completo)
   }
 
-  function handleMsgDeletar() {
-    setMsgDeletar(!msgDeletar)
+  function ativarDelete() {
+    setToggleDelete(true)
   }
 
-  function cancelar() {
-    setMsgDeletar(false)
+  function desativarDelete() {
+    setToggleDelete(false)
   }
 
-  function deletarItem() {
-    fetch(`http://localhost:5000/lista_itens/${dados.id}`, {
-      method: 'DELETE', 
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).then(resp => resp.json())
-    .then(() => setMsgDeletar(false))
-    .catch(err => console.log(err))
+  function handleDeletarItem() {
+    deletarItem(dados)
+    setToggleDelete(false)
   }
-
+  
 
   return(
     <>
       {dados && (
         <div className={style.container}>
-          {msgDeletar && <Deletar cancelar={cancelar} deletar={deletarItem}/>}
+          {toggleDelete && <Deletar deletar={handleDeletarItem} cancelar={desativarDelete}/>}
           <div className={style.data}>
             <p>
               <span>{dados.data.dia}</span> / <span>{dados.data.mes}</span> / <span>{dados.data.ano}</span>
@@ -63,8 +59,8 @@ function Item({dados}) {
             <span></span>
           </button>
           <div className={`${mostrarBts && style.fechar} ${style.containerBtns}`}>
-            <Botao texto="Editar" customClass="editar" icone={lapis} />
-            <Botao texto="Excluir" customClass="excluir" icone={lixeira} acao={handleMsgDeletar}/>
+            <Botao texto="Editar" customClass="editar" icone={lapis}/>
+            <Botao texto="Excluir" customClass="excluir" icone={lixeira} acao={ativarDelete}/>
           </div>
         </div>
       )}

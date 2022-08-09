@@ -1,14 +1,3 @@
 {
-  "lista_itens": [
-    {
-      "descricao": "novo teste",
-      "data": {
-        "dia": 9,
-        "mes": 8,
-        "ano": 2022
-      },
-      "completo": false,
-      "id": 1
-    }
-  ]
+  "lista_itens": []
 }
