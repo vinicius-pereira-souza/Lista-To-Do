@@ -13,7 +13,7 @@ function Item({dados, editarDados, deletarItem}) {
 
   const [ mostrarBts, setMostrarBtns ] = useState(true)
   const [ completo, setCompleto ] = useState(false)
-  const [ toggleDelete, setToggleDelete ] = useState(false)
+
 
   function handleMostrarBtns() {
     setMostrarBtns(!mostrarBts)
@@ -23,25 +23,12 @@ function Item({dados, editarDados, deletarItem}) {
     setCompleto(!completo)
   }
 
-  function ativarDelete() {
-    setToggleDelete(true)
-  }
 
-  function desativarDelete() {
-    setToggleDelete(false)
-  }
-
-  function handleDeletarItem() {
-    deletarItem(dados)
-    setToggleDelete(false)
-  }
-  
 
   return(
     <>
       {dados && (
         <div className={style.container}>
-          {toggleDelete && <Deletar deletar={handleDeletarItem} cancelar={desativarDelete}/>}
           <div className={style.data}>
             <p>
               <span>{dados.data.dia}</span> / <span>{dados.data.mes}</span> / <span>{dados.data.ano}</span>
@@ -59,8 +46,8 @@ function Item({dados, editarDados, deletarItem}) {
             <span></span>
           </button>
           <div className={`${mostrarBts && style.fechar} ${style.containerBtns}`}>
-            <Botao texto="Editar" customClass="editar" icone={lapis}/>
-            <Botao texto="Excluir" customClass="excluir" icone={lixeira} acao={ativarDelete}/>
+            <Botao texto="Editar" customClass="editar" icone={lapis} />
+            <Botao texto="Excluir" customClass="excluir" icone={lixeira}/>
           </div>
         </div>
       )}
