@@ -1,5 +1,5 @@
 import style from './Item.module.css'
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Botao from '../Botao/Botao';
 
 import lixeira from '../../imgs/icon-delete.svg'
@@ -9,7 +9,7 @@ import iconeIncompleto from '../../imgs/icone-desmarcado.svg'
 import Deletar from './../Excluir/Deletar';
 import FormEditar from '../FormEditar/FormEditar';
 
-function Item({dados, editarDados, deletarItem}) {
+function Item({dados}) {
   const [ mostrarBts, setMostrarBtns ] = useState(true)
 
   const [ completo, setCompleto ] = useState(false)
@@ -21,6 +21,7 @@ function Item({dados, editarDados, deletarItem}) {
   }
   function handleCompleto() {
     setCompleto(!completo)
+    toggleEditarCompleto(dados)
   }
 
   function toggleAbrirModalDelete() {
@@ -57,6 +58,22 @@ function Item({dados, editarDados, deletarItem}) {
   }
   function toggleAbrirModalEditar() {
     setIditarItem(true)
+  }
+
+  function toggleEditarCompleto(item) {
+    fetch(`http://localhost:5000/lista_itens/${item.id}`, {
+      method: 'PATCH', 
+      headers: {
+        'Content-Type': 'application/json'
+      }, 
+      body: JSON.stringify({
+        ...item, completo: !completo
+      })
+    })
+    .then(() => {
+      setIditarItem(false)
+    })
+    .catch(err => console.log(err))
   }
 
   return(
