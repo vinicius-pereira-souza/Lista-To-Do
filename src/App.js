@@ -7,64 +7,50 @@ import Item from './components/Item/Item';
 import { useEffect, useState } from 'react';
 
 function App() {
-  const [ arrItens, setArrItens ] = useState(false)
+  const [ arrItem, setArrItem ] = useState([])
 
   useEffect(() => {
-    fetch('http://localhost:5000/lista_itens', {
+    fetch(`http://localhost:5000/lista_itens`, {
       method: 'GET', 
       headers: {
         'Content-Type': 'application/json'
       }
-    }).then(resp => resp.json())
+    }).then(r => r.json())
     .then(itens => {
-      setArrItens(itens)
+      setArrItem(itens)
     }).catch(err => console.log(err))
-  }, [])
+  }, [arrItem])
 
-  function adicionarItem(novoItem) {
-    const dataAdicionado = new Date()
+  function handleAdicionarItem(item) {
+    const dataPost = new Date()
 
-    novoItem.data = {
-      dia: dataAdicionado.getDate(), 
-      mes: dataAdicionado.getMonth() + 1, 
-      ano: dataAdicionado.getFullYear()
+    item.data = {
+      dia: dataPost.getDate(),
+      mes: dataPost.getMonth() + 1, 
+      ano: dataPost.getFullYear()
     }
+    item.completo = false
 
-    fetch('http://localhost:5000/lista_itens', {
+    fetch(`http://localhost:5000/lista_itens`, {
       method: 'POST', 
       headers: {
         'Content-Type': 'application/json'
       }, 
-      body: JSON.stringify({
-        ...novoItem, completo: false
-      })
-    }).catch(err => console.log(err))
-  }
-
-  function handleDelete(item) {
-    fetch(`http://localhost:5000/lista_itens/${item.id}`, {
-      method: 'DELETE', 
-      headers: {
-        'Content-Type': 'application/json'
-      }
+      body: JSON.stringify(item)
     })
-    .then(r => r.json())
-    .then(items => {
-      console.log(items)
-    }).catch(err => console.log(err))
   }
 
   return (
     <div>
       <Logo />
-      <Form handleAdicionar={adicionarItem} textoBtn="Adicionar"/>
+      <Form textoBtn="Adicionar" handleAdicionar={handleAdicionarItem}/>
       <Container customClass="flexEnd">
         <Filtro/>
       </Container>
       <Container>
-        {arrItens.length > 0 && (
-          arrItens.map((objDados) => (
-            <Item key={objDados.id} dados={objDados} deletarItem={handleDelete}/>
+        {arrItem.length > 0 && (
+          arrItem.map(itemDados => (
+            <Item dados={itemDados} key={itemDados.id}/>
           ))
         )}
       </Container>
