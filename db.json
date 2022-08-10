@@ -1,7 +1,7 @@
 {
   "lista_itens": [
     {
-      "descricao": "teste",
+      "descricao": "não é que funcionou mesmo!! :)",
       "data": {
         "dia": 10,
         "mes": 8,
@@ -9,36 +9,6 @@
       },
       "completo": false,
       "id": 1
-    },
-    {
-      "descricao": "testando",
-      "data": {
-        "dia": 10,
-        "mes": 8,
-        "ano": 2022
-      },
-      "completo": false,
-      "id": 2
-    },
-    {
-      "descricao": "teste4550",
-      "data": {
-        "dia": 10,
-        "mes": 8,
-        "ano": 2022
-      },
-      "completo": false,
-      "id": 3
-    },
-    {
-      "descricao": "novos dados adicionados",
-      "data": {
-        "dia": 10,
-        "mes": 8,
-        "ano": 2022
-      },
-      "completo": false,
-      "id": 4
     }
   ]
 }

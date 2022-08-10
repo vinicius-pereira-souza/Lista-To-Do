@@ -19,7 +19,7 @@ function App() {
     .then(itens => {
       setArrItem(itens)
     }).catch(err => console.log(err))
-  }, [])
+  }, [arrItem])
 
   function handleAdicionarItem(item) {
     const dataPost = new Date()
