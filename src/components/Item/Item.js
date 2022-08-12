@@ -1,5 +1,5 @@
 import style from './Item.module.css'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Botao from '../Botao/Botao';
 
 import lixeira from '../../imgs/icon-delete.svg'
@@ -9,12 +9,24 @@ import iconeIncompleto from '../../imgs/icone-desmarcado.svg'
 import Deletar from './../Excluir/Deletar';
 import FormEditar from '../FormEditar/FormEditar';
 
-function Item({dados}) {
+function Item({dados, handleRemove, handleEditItem}) {
   const [ mostrarBts, setMostrarBtns ] = useState(true)
 
   const [ completo, setCompleto ] = useState(false)
   const [ deleteItem, setDeleteItem ] = useState(false)
   const [ editarItem, setIditarItem ] = useState(false)
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/lista_itens/${dados.id}`, {
+      method: 'GET', 
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(r => r.json())
+    .then(item => {
+      setCompleto(item.completo)
+    }).catch(err => console.log(err))
+  }, [dados])
 
   function handleMostrarBtns() {
     setMostrarBtns(!mostrarBts)
@@ -31,31 +43,9 @@ function Item({dados}) {
     setDeleteItem(false)
   }
   function btnDeletarItem() {
-    fetch(`http://localhost:5000/lista_itens/${dados.id}`, {
-      method: 'DELETE', 
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(() => {
-      setDeleteItem(false)
-    })
-    .catch(err => console.log(err))
+    handleRemove(dados.id)
   }
 
-  function handleEditarItem(item) {
-    fetch(`http://localhost:5000/lista_itens/${item.id}`, {
-      method: 'PATCH', 
-      headers: {
-        'Content-Type': 'application/json'
-      }, 
-      body: JSON.stringify(item)
-    })
-    .then(() => {
-      setIditarItem(false)
-    })
-    .catch(err => console.log(err))
-  }
   function toggleAbrirModalEditar() {
     setIditarItem(true)
   }
@@ -81,7 +71,6 @@ function Item({dados}) {
       {dados && (
         <div className={style.container}>
           {deleteItem && <Deletar deletar={btnDeletarItem} cancelar={toggleDesativaModalDelete}/>}
-          {editarItem && <FormEditar acao={handleEditarItem} valor={dados}/>}
           <div className={style.data}>
             <p>
               <span>{dados.data.dia}</span> / <span>{dados.data.mes}</span> / <span>{dados.data.ano}</span>

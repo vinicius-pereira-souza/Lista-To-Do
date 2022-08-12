@@ -19,7 +19,7 @@ function App() {
     .then(itens => {
       setArrItem(itens)
     }).catch(err => console.log(err))
-  }, [arrItem])
+  }, [])
 
   function handleAdicionarItem(item) {
     const dataPost = new Date()
@@ -38,19 +38,42 @@ function App() {
       }, 
       body: JSON.stringify(item)
     })
+    .then(item => item.json())
+    .then(resp => {
+      setArrItem([...arrItem, resp])
+    })
+    .catch(err => console.log(err))
   }
+
+  function handleRemoveIten(id) {
+    fetch(`http://localhost:5000/lista_itens/${id}`, {
+      method: 'DELETE', 
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(() => {
+      setArrItem(arrItem.filter(item => item.id !== id))
+    })
+    .catch(err => console.log(err))
+  }
+
+
 
   return (
     <div>
       <Logo />
       <Form textoBtn="Adicionar" handleAdicionar={handleAdicionarItem}/>
       <Container customClass="flexEnd">
-        <Filtro/>
+        <Filtro />
       </Container>
       <Container>
         {arrItem.length > 0 && (
           arrItem.map(itemDados => (
-            <Item dados={itemDados} key={itemDados.id}/>
+            <Item dados={itemDados} 
+              key={itemDados.id} 
+              handleRemove={handleRemoveIten} 
+            />
           ))
         )}
       </Container>
