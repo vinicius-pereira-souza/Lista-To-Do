@@ -58,20 +58,9 @@ function App() {
     .catch(err => console.log(err))
   }
 
-  function handleItemEditar(dados) {
-    fetch(`http://localhost:5000/lista_itens/${dados.id}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json'
-      }, 
-      body: JSON.stringify({descricao: dados.descricao})
-    })
-    .then((resp) => resp.json())
-    .then(item => {
-      setArrItem(arrItem.map(obj => obj.id === dados.id ? item : obj))
-    })
-    .catch(err => console.log(err))
-  }
+  function editarEDesativarFormEdit(itemAtual, itemEditado) {
+    setArrItem(arrItem.map(obj => obj.id === itemAtual.id ? itemEditado : obj))
+  } 
 
   return (
     <div>
@@ -86,7 +75,7 @@ function App() {
             <Item dados={itemDados} 
               key={itemDados.id} 
               handleRemove={handleRemoveIten} 
-              handleEdit={handleItemEditar}
+              handleEdit={editarEDesativarFormEdit}
             />
           ))
         )}

@@ -66,12 +66,28 @@ function Item({dados, handleRemove, handleEdit}) {
     .catch(err => console.log(err))
   }
 
+  function handleItemEditar(dados) {
+    fetch(`http://localhost:5000/lista_itens/${dados.id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      }, 
+      body: JSON.stringify({descricao: dados.descricao})
+    })
+    .then((resp) => resp.json())
+    .then(item => {
+      handleEdit(dados, item)
+      setIditarItem(false)
+    })
+    .catch(err => console.log(err))
+  }
+
   return(
     <>
       {dados && (
         <div className={style.container}>
           {deleteItem && <Deletar deletar={btnDeletarItem} cancelar={toggleDesativaModalDelete}/>}
-          {editarItem && <FormEditar acao={handleEdit} valor={dados}/>}
+          {editarItem && <FormEditar acao={handleItemEditar} valor={dados}/>}
           <div className={style.data}>
             <p>
               <span>{dados.data.dia}</span> / <span>{dados.data.mes}</span> / <span>{dados.data.ano}</span>
