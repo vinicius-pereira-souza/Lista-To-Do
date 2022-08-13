@@ -62,12 +62,16 @@ function App() {
     setArrItem(arrItem.map(obj => obj.id === itemAtual.id ? itemEditado : obj))
   } 
 
+  function handleFilterButton(e) {
+    console.log(e.target.id)
+  }
+
   return (
     <div>
       <Logo />
       <Form textoBtn="Adicionar" handleAdicionar={handleAdicionarItem}/>
       <Container customClass="flexEnd">
-        <Filtro />
+        <Filtro acaoFilter={handleFilterButton}/>
       </Container>
       <Container>
         {arrItem.length > 0 && (
