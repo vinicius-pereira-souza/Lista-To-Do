@@ -26,7 +26,7 @@ function Item({dados, handleRemove, handleEdit}) {
     .then(item => {
       setCompleto(item.completo)
     }).catch(err => console.log(err))
-  }, [dados])
+  }, [dados.completo, dados.id])
 
   function handleMostrarBtns() {
     setMostrarBtns(!mostrarBts)
