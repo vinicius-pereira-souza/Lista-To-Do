@@ -9,7 +9,7 @@ import iconeIncompleto from '../../imgs/icone-desmarcado.svg'
 import Deletar from './../Excluir/Deletar';
 import FormEditar from '../FormEditar/FormEditar';
 
-function Item({dados, handleRemove, handleEditItem}) {
+function Item({dados, handleRemove, handleEdit}) {
   const [ mostrarBts, setMostrarBtns ] = useState(true)
 
   const [ completo, setCompleto ] = useState(false)
@@ -66,11 +66,28 @@ function Item({dados, handleRemove, handleEditItem}) {
     .catch(err => console.log(err))
   }
 
+  function handleItemEditar(dados) {
+    fetch(`http://localhost:5000/lista_itens/${dados.id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      }, 
+      body: JSON.stringify({descricao: dados.descricao})
+    })
+    .then((resp) => resp.json())
+    .then(item => {
+      handleEdit(dados, item)
+      setIditarItem(false)
+    })
+    .catch(err => console.log(err))
+  }
+
   return(
     <>
       {dados && (
         <div className={style.container}>
           {deleteItem && <Deletar deletar={btnDeletarItem} cancelar={toggleDesativaModalDelete}/>}
+          {editarItem && <FormEditar acao={handleItemEditar} valor={dados}/>}
           <div className={style.data}>
             <p>
               <span>{dados.data.dia}</span> / <span>{dados.data.mes}</span> / <span>{dados.data.ano}</span>

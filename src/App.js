@@ -58,7 +58,9 @@ function App() {
     .catch(err => console.log(err))
   }
 
-
+  function editarEDesativarFormEdit(itemAtual, itemEditado) {
+    setArrItem(arrItem.map(obj => obj.id === itemAtual.id ? itemEditado : obj))
+  } 
 
   return (
     <div>
@@ -73,6 +75,7 @@ function App() {
             <Item dados={itemDados} 
               key={itemDados.id} 
               handleRemove={handleRemoveIten} 
+              handleEdit={editarEDesativarFormEdit}
             />
           ))
         )}
