@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 
 function App() {
   const [ arrItem, setArrItem ] = useState([])
+  const [ arrCompletaFilter, setArrCompletaFilter ] = useState([])
 
   useEffect(() => {
     fetch(`http://localhost:5000/lista_itens`, {
@@ -18,6 +19,7 @@ function App() {
     }).then(r => r.json())
     .then(itens => {
       setArrItem(itens)
+      setArrCompletaFilter(itens)
     }).catch(err => console.log(err))
   }, [])
 
@@ -63,7 +65,13 @@ function App() {
   } 
 
   function handleFilterButton(e) {
-    console.log(e.target.id)
+    if(e.target.id === 'incompleto') {
+      setArrItem(arrCompletaFilter.filter(item => item.completo !== true))
+    } else if(e.target.id === 'completo') {
+      setArrItem(arrCompletaFilter.filter(item => item.completo === true))
+    } else {
+      setArrItem(arrCompletaFilter)
+    }
   }
 
   return (
